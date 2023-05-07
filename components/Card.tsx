@@ -9,7 +9,7 @@ const Card = ({data}) => {
   return (
     <View style={styles.card}>
       <CardHeader authorName={data.authorName} />
-      <Carousel images={data.images} />
+      <Carousel data={data} />
       <Information data={data} />
       <ActionButtons data={data} />
     </View>

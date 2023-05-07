@@ -1,59 +1,54 @@
-import React, { useState } from 'react';
+import { NavigationContext } from '@react-navigation/native';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
   View,
   Image,
   FlatList,
   StyleSheet,
   Dimensions,
+  Pressable,
 } from 'react-native';
+import { SharedElement } from 'react-navigation-shared-element';
 
 const { width } = Dimensions.get('window');
 
-const ScrollIndicator = ({ imagesLength, activeIndex }) => {
-  const dots = [];
-  for (let index = 0; index < imagesLength; index++) {
-    dots.push(
-      <View
-        key={index}
-        style={[
-          styles.indicatorDot,
-          activeIndex === index ? styles.activeDot : {},
-        ]}
-      />
-    );
-  }
+const Carousel = ({ data }) => {
+  const { images } = data;
+  const navigation = useContext(NavigationContext);
+  const flatListRef = useRef<FlatList>();
+  const [startIndex, setStartIndex] = useState(0);
 
-  return <View style={styles.indicatorContainer}>{dots}</View>;
-};
-
-const Carousel = ({ images }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const onViewRef = React.useRef(({ viewableItems }) => {
-    setActiveIndex(viewableItems[0].index);
-  });
+  useEffect(() => {
+    if(flatListRef.current) {
+      flatListRef.current.scrollToIndex({ index: startIndex, animated: false });
+    }
+  }, [startIndex]);
 
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 });
-
+  
   return (
     <View>
       <FlatList
+        ref={flatListRef}
         data={images}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
+        initialScrollIndex={startIndex}
         renderItem={({ item, index }) => (
+        <Pressable onPress={() => navigation.navigate('Details', {data, index, setStartIndex})}>
+          <SharedElement id={`${data.id}.${index}.photo`}>
           <Image
             key={index}
             source={item}
             style={[styles.carouselImage, { width }]}
           />
+          </SharedElement>
+          </Pressable>
         )}
         keyExtractor={(_, index) => index.toString()}
-        onViewableItemsChanged={onViewRef.current}
         viewabilityConfig={viewConfigRef.current}
       />
-      <ScrollIndicator imagesLength={images.length} activeIndex={activeIndex} />
     </View>
   );
 };
