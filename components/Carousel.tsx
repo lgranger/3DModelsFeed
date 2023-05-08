@@ -4,10 +4,8 @@ import {
   Image,
   FlatList,
   StyleSheet,
-  Dimensions,
+  Pressable,
 } from 'react-native';
-
-const { width } = Dimensions.get('window');
 
 const ScrollIndicator = ({ imagesLength, activeIndex }) => {
   const dots = [];
@@ -26,7 +24,7 @@ const ScrollIndicator = ({ imagesLength, activeIndex }) => {
   return <View style={styles.indicatorContainer}>{dots}</View>;
 };
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images, showModal, windowWidth }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onViewRef = React.useRef(({ viewableItems }) => {
@@ -43,11 +41,13 @@ const Carousel = ({ images }) => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
+          <Pressable onPress={() => showModal()}>
           <Image
             key={index}
             source={item}
-            style={[styles.carouselImage, { width }]}
+            style={[styles.carouselImage, { width: windowWidth }]}
           />
+          </Pressable>
         )}
         keyExtractor={(_, index) => index.toString()}
         onViewableItemsChanged={onViewRef.current}
@@ -60,7 +60,7 @@ const Carousel = ({ images }) => {
 
 const styles = StyleSheet.create({
   carouselImage: {
-    height: 400,
+    height: 350,
     resizeMode: 'cover',
   },
   indicatorContainer: {

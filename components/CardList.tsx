@@ -3,8 +3,8 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import Card from './Card';
 import mockData from '../mockData';
 
-const CardList = () => {
-  const renderItem = ({ item }) => <Card data={item} />;
+const CardList = ({showModal}) => {
+  const renderItem = ({ item }) => <Card data={item} showModal={showModal} />;
   const separator = () => <View style={styles.separator} />;
 
   return (

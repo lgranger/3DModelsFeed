@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import CardHeader from './CardHeader';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import AuthorInfo from './AuthorInfo';
 import Carousel from './Carousel';
 import ActionButtons from './ActionButtons';
 import Information from './Information';
 
-const Card = ({data}) => {
+const {width} = Dimensions.get('window');
+
+const Card = ({data, showModal}) => {
   return (
     <View style={styles.card}>
-      <CardHeader authorName={data.authorName} />
-      <Carousel images={data.images} />
+      <AuthorInfo authorName={data.authorName} />
+      <Carousel images={data.images} showModal={() => showModal(data)} windowWidth={width}/>
       <Information data={data} />
       <ActionButtons data={data} />
     </View>

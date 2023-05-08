@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const CardHeader = ({ authorName }) => {
+const AuthorInfo = ({ authorName }) => {
   return (
-    <View style={styles.header}>
+    <View style={styles.container}>
       <Text style={styles.authorName}>{authorName}</Text>
       <TouchableOpacity style={styles.followButton}>
         <Text style={styles.followButtonText}>Follow</Text>
@@ -13,7 +13,7 @@ const CardHeader = ({ authorName }) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
+  container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardHeader;
+export default AuthorInfo;

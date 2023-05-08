@@ -34,7 +34,7 @@ const mockData: ProjectData[] = [
     images: [require('./resources/dragon/db1.jpg'), require('./resources/dragon/db2.jpg'), require('./resources/dragon/db3.png')],
     comments: 12,
     likes: 54,
-    description: 'This is a remix of the classic Dragon Box. Ok, I had support issues with all of the dragon box lids so i added supports in meshmixer. There was also a hole in v3 dragonbox bottom. And there were no hinge pins for the hinges.\nSo Top</b></u> - added nice thick 5mm supports for the chin and both wings. They will break off with a satisfying snap and they will print even at 200mm infill speeds. They will not tip over.'
+    description: 'This is a remix of the classic Dragon Box.\nOk, I had support issues with all of the dragon box lids so i added supports in meshmixer. There was also a hole in v3 dragonbox bottom. And there were no hinge pins for the hinges.\nSo\nTop</b></u> - added nice thick 5mm supports for the chin and both wings. They will break off with a satisfying snap and they will print even at 200mm infill speeds. They will not tip over.\n<b><u>Bottom</b></u> - added supports to all the added weapons and the dragon heads. also filled in and sort of smoothed out the hole in the short side by the mace.\nprints flawlessly\n<b><u>Hinge pins</b></u> - pins should push in from the outside. they will be flush and should keep the top and bottom connected. They are also removable just use a pen or probe to pop them out.\nPrinted in PLA. So they should be ok for pet-g but i\'m not sure how they would react to attempting in ABS.'
   },
 ];
 
